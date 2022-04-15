@@ -8,7 +8,7 @@ public class RecursivePlanner
         return best.Item2;
     }
 
-    public Tuple<float, PlanAction> RecursivePlan(PlanWorldModel worldModel, int depth, int maxDepth)
+    private Tuple<float, PlanAction> RecursivePlan(PlanWorldModel worldModel, int depth, int maxDepth)
     {
         // if we are at max recursion depth, return the discontentment and the last action of our world model,
         // else find the lowest discontentment, best action from all possible successor world models.
