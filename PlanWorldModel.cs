@@ -7,6 +7,7 @@ public abstract class PlanWorldModel
     public List<PlanAction> possibleActions = new List<PlanAction>();
     public List<PlanGoal> goals = new List<PlanGoal>();
     protected float timePassed = 0f;
+    private bool actionsDiscovered = false;
     
     public abstract void ApplyAction(PlanAction action);
     public abstract PlanWorldModel Copy();
@@ -15,6 +16,12 @@ public abstract class PlanWorldModel
     
     public virtual PlanAction GetNextAction()
     {
+        if (!actionsDiscovered)
+        {
+            DiscoverActions();
+            actionsDiscovered = true;
+        }
+    
         // no next action
         if (actionPointer > possibleActions.Count-1) return null;
         // next action available
